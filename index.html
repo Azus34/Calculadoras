@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Ecuaciones</title>
+</head>
+<body>
+    <h1>Calculadora de Sistema de Ecuaciones</h1>
+    <form id="form" method="POST">
+        <h3>Ecuación 1: a1*x + b1*y = c1</h3>
+        <input type="text" name="a1" required> * x +
+        <input type="text" name="b1" required> * y =
+        <input type="text" name="c1" required><br>
+
+        <h3>Ecuación 2: a2*x + b2*y = c2</h3>
+        <input type="text" name="a2" required> * x +
+        <input type="text" name="b2" required> * y =
+        <input type="text" name="c2" required><br>
+
+        <input type="submit" value="Resolver">
+        <button type="button" onclick="document.getElementById('form').reset(); location.reload();">Limpiar</button>
+    </form>
+
+    {% if solution %}
+        <h2>Resultado:</h2>
+        <pre>
+            {% if solution == "No tiene solución (delta es 0)." %}
+                {{ solution }}
+            {% else %}
+                Delta: {{ solution.delta }}
+                Delta_x: {{ solution.delta_x }}
+                Delta_y: {{ solution.delta_y }}
+                x: {{ solution.x }}
+                y: {{ solution.y }}
+            {% endif %}
+        </pre>
+
+        <h2>Procedimiento:</h2>
+        <pre>{{ procedure }}</pre>
+
+        <h2>Comprobación:</h2>
+        <pre>{{ check }}</pre>
+    {% endif %}
+</body>
+</html>
